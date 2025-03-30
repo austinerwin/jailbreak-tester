@@ -9,16 +9,17 @@ API_KEY = os.getenv("API_KEY")
 SITE_URL = os.getenv("SITE_URL")
 SITE_NAME = os.getenv("SITE_NAME")
 
-def send_message_to_openrouter(message, model="openai/gpt-4o-mini"):
+def send_message_to_openrouter(message, model="openai/gpt-4o-mini", system_prompt=None):
     """
     Send a message to the OpenRouter model and return the response.
 
     Args:
     - message (str): The message to send to the OpenRouter model.
     - model (str): The model identifier, default is "openai/gpt-4o-mini".
+    - system_prompt (str, optional): The system prompt to set the behavior or context for the assistant.
 
     Returns:
-    - str: The content of the response from the model or error message.
+    - str: The content of the response from the model or an error message.
     """
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -26,9 +27,15 @@ def send_message_to_openrouter(message, model="openai/gpt-4o-mini"):
         "X-Title": SITE_NAME,
         "Content-Type": "application/json"
     }
+    
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": message})
+    
     data = json.dumps({
         "model": model,
-        "messages": [{"role": "user", "content": message}]
+        "messages": messages
     })
     
     response = requests.post(
@@ -44,5 +51,5 @@ def send_message_to_openrouter(message, model="openai/gpt-4o-mini"):
         return f"Error: {response.status_code} - {response.text}"
 
 # Example usage:
-response = send_message_to_openrouter("Hi", "openai/gpt-4o-mini")
+response = send_message_to_openrouter("Hello!", system_prompt="You are a helpful assistant.")
 print(response)
