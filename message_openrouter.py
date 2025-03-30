@@ -49,7 +49,3 @@ def send_message_to_openrouter(message, model="openai/gpt-4o-mini", system_promp
         return completion['choices'][0]['message']['content']
     else:
         return f"Error: {response.status_code} - {response.text}"
-
-# Example usage:
-response = send_message_to_openrouter("Hello!", system_prompt="You are a helpful assistant.")
-print(response)
