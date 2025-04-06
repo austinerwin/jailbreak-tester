@@ -5,9 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("API_KEY")
-SITE_URL = os.getenv("SITE_URL")
-SITE_NAME = os.getenv("SITE_NAME")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 def send_message_to_openrouter(message, model="openai/gpt-4o-mini", system_prompt=None):
     """
@@ -22,9 +20,9 @@ def send_message_to_openrouter(message, model="openai/gpt-4o-mini", system_promp
     - str: The content of the response from the model or an error message.
     """
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "HTTP-Referer": SITE_URL,
-        "X-Title": SITE_NAME,
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "HTTP-Referer": "",
+        "X-Title": "",
         "Content-Type": "application/json"
     }
     
