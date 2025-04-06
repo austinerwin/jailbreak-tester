@@ -24,18 +24,6 @@ Install the required Python packages:
 pip install -r requirements.txt
 ```
 
-On some systems, you may need to use:
-
-- Windows:
-  ```bash
-  python -m pip install -r requirements.txt
-  ```
-
-- Linux/Mac:
-  ```bash
-  python3 -m pip install -r requirements.txt
-  ```
-
 ### OpenRouter API Key
 1. Create an API key at [OpenRouter](https://openrouter.ai).
 2. Create a `.env` file in your project root directory and insert your API key:
