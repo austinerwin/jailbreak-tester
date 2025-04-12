@@ -13,8 +13,8 @@ A tool for testing jailbreak prompts against language models to ensure they prop
 ### Input Files
 
 1. `models.txt` - Comma-separated list of OpenRouter models to test (e.g., `openai/gpt-4o-mini, anthropic/claude-3-haiku`)
-2. `/jailbreaks/` directory - Each .txt file contains a jailbreak prompt that will be used as the system message
-3. `/messages/` directory - Each .txt file contains a test message that would typically be rejected
+2. `/jailbreaks` directory - Each .txt file contains a jailbreak prompt that will be used as the system message
+3. `/messages` directory - Each .txt file contains a test message that would typically be rejected
 
 ### Running Tests
 
@@ -25,7 +25,7 @@ python jailbreak_tester.py
 To use a different model for verification:
 
 ```bash
-python jailbreak_tester.py --verification-model=anthropic/claude-3-haiku
+python jailbreak_tester.py
 ```
 
 ### Output
